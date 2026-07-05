@@ -1,10 +1,11 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "GitHub Markdown Formatter",
   "version": "1.0.0",
   "description": "Format messy developer notes into clean GitHub Markdown directly in PR descriptions and comments.",
-  "permissions": [
-    "activeTab",
+  "permissions": ["activeTab"],
+  "host_permissions": [
+    "https://github.com/*",
     "https://github-markdown-formatter.vercel.app/*"
   ],
   "data_collection_permissions": {
