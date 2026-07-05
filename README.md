@@ -1,51 +1,33 @@
-# GitHub Markdown Formatter
+# GitHub Markdown Formatter — Extension
 
-A Firefox extension that adds Format and Format with AI buttons to GitHub comment and PR description boxes, converting raw developer notes into clean GitHub-flavored Markdown.
+Adds two buttons to every GitHub textarea: one that formats raw developer notes into clean Markdown using a rule-based pipeline, and one that runs the result through an AI model for grammar and clarity.
 
-## Features
+## How it works
 
-- Converts action verb lines into bullet points
-- Wraps code identifiers, snake_case, and CamelCase in backticks
-- Converts issue references — `fixes 123` becomes `Fixes #123`
-- Capitalizes sentences
-- Optional AI enhancement via Groq for grammar and clarity improvements
-- Works on PR descriptions, issue descriptions, review comments, and all GitHub textareas
+The extension injects a Format button and a Format with AI button above any comment or description box on GitHub. Click Format and your raw notes are processed locally — no network request, no delay. Click Format with AI and the formatted output is sent to a Groq-hosted Llama model for an additional grammar pass.
+
+The formatting pipeline runs in order. Issue references like `fixes 123` become `Fixes #123`. Code identifiers including `snake_case`, `CamelCase`, and `function()` calls are wrapped in backticks. Lines starting with action verbs become bullet points. The first letter of each line is capitalized.
 
 ## Installation
 
-1. Clone the repository
+Clone the repo and load it as a temporary add-on in Firefox.
 
 ```bash
 git clone https://github.com/taniy8/github-markdown-extension.git
 ```
 
-2. Open Firefox and go to `about:debugging`
-3. Click **This Firefox**, then **Load Temporary Add-on**
-4. Select `manifest.json` from the cloned folder
+Open `about:debugging` → This Firefox → Load Temporary Add-on → select `manifest.json`.
 
-The extension is active immediately. It will be removed when Firefox restarts.
-
-## Usage
-
-1. Go to any GitHub PR, issue, or comment page
-2. Click inside a description or comment box
-3. Two buttons appear above the textarea — **Format** and **Format with AI**
-4. Click **Format** for instant rule-based formatting
-5. Click **Format with AI** to additionally improve grammar and clarity
+The extension is active immediately. It unloads when Firefox restarts.
 
 ## Permissions
 
-- `activeTab` reads and modifies textarea content on the active tab
-- `https://github.com/*` injects buttons into GitHub pages
-- `https://github-markdown-formatter.vercel.app/*` calls the AI enhancement API
+`activeTab` is needed to read and update textarea content on the current tab. `https://github.com/*` is needed to inject buttons into GitHub pages. `https://github-markdown-formatter.vercel.app/*` is needed to reach the AI enhancement endpoint.
 
-## Contributing
+## Related
 
-1. Fork the repository
-2. Create a branch for your change
-3. Commit with a descriptive message
-4. Open a pull request
+Web app — https://github-markdown-formatter.vercel.app
 
 ## License
 
-MIT 
+MIT © [taniy8](https://github.com/taniy8)
